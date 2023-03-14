@@ -5,8 +5,29 @@
 #ifndef TEB1013_FINALPROJECT_Q1_QUESTION1_H
 #define TEB1013_FINALPROJECT_Q1_QUESTION1_H
 
+#include "common.h"
+
 namespace question1 {
+    /**
+     * Stores departure Time struct and arrival Time struct.
+     */
+    struct DepartArriveTimes {
+        common::Time departure;
+        common::Time arrival;
+    };
+
+    /**
+     * This function asks for the number of days the businessperson spent on the trip,
+     * checks the validity of the input (non-negative int), and returns it.
+     * @return number of days spent on the trip
+     */
     int numOfTripDays();
+
+    /**
+     * This function asks for the departure and arrival times for the businessperson's trip.
+     * @return a struct containing valid departure and arrival times
+     */
+    DepartArriveTimes departureAndArrivalTimes();
 }
 
 #endif //TEB1013_FINALPROJECT_Q1_QUESTION1_H
