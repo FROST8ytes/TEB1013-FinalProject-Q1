@@ -15,7 +15,7 @@ namespace question1 {
     int numOfTripDays() {
         int input;
         input = common::getNumInput<int>("Enter the number of days spent on the trip",
-                                         [] (int input) -> bool { return input >= 0; });
+                                         [] (int input) -> bool { return input >= 1; });
         return input;
     }
 
