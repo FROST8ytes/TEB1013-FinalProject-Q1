@@ -5,6 +5,12 @@
 #ifndef TEB1013_FINALPROJECT_Q1_COMMON_H
 #define TEB1013_FINALPROJECT_Q1_COMMON_H
 
+#ifdef _WIN32
+#define CLEAR "cls"
+#else
+#define CLEAR "clear"
+#endif
+
 #include <iostream>
 #include <string>
 #include "common.inl"
@@ -17,6 +23,11 @@ namespace common {
     struct Time {
         unsigned int hour;
         unsigned int minute;
+    };
+
+    struct Expenses {
+        float allowableExpense;
+        float excessExpense;
     };
 
     /**
@@ -39,5 +50,7 @@ namespace common {
      */
     std::string getStrInput(const char* message, bool (*func)(std::string));
 }
+
+common::Expenses& operator+=(common::Expenses& original, const common::Expenses& other);
 
 #endif //TEB1013_FINALPROJECT_Q1_COMMON_H

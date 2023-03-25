@@ -51,3 +51,10 @@ namespace common {
         return input;
     }
 }
+
+common::Expenses& operator+=(common::Expenses& original, const common::Expenses& other) {
+    original.allowableExpense += other.allowableExpense;
+    original.excessExpense += other.excessExpense;
+
+    return original;
+}

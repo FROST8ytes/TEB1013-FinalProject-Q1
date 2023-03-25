@@ -37,6 +37,37 @@ namespace question1 {
     }
 
     /**
+     * This function acts as the menu that lists the options that the user can choose to give more info about the trip
+     * for the day.
+     * @param dayNum trip day number
+     * @return option listed in the menu
+     */
+    int menu(int dayNum) {
+        std::cout << "+-------------------------------------------------------------+" << std::endl;
+        std::cout << "                       DAY " << dayNum << std::endl;
+        std::cout << "+-------------------------------------------------------------+" << std::endl;
+        std::cout << "0. ENTER ROUND-TRIP AIRFARE FOR THE DAY" << std::endl;
+        std::cout << "1. ENTER CAR RENTALS FOR THE DAY" << std::endl;
+        std::cout << "2. ENTER MILES DRIVEN USING A PRIVATE VEHICLE FOR THE DAY" << std::endl;
+        std::cout << "3. ENTER PARKING FEES FOR THE DAY" << std::endl;
+        std::cout << "4. ENTER TAXI FEES FOR THE DAY" << std::endl;
+        std::cout << "5. ENTER CONFERENCE OR SEMINAR REGISTRATION FEES FOR THE DAY" << std::endl;
+        std::cout << "6. ENTER HOTEL EXPENSES FOR THE DAY" << std::endl;
+        std::cout << "7. ENTER MEALS FOR THE DAY" << std::endl;
+        std::cout << "8. ENTER EXPENSES FOR THE NEXT DAY OR CALCULATE TOTAL EXPENSES" << std::endl;
+        auto option = common::getNumInput<int>("Choose one option listed above",
+                                               [](int input) { return input >= 0 && input <= 8; });
+        std::cout << "+-------------------------------------------------------------+" << std::endl;
+        return option;
+    }
+
+    // TODO: write docs for this function
+    float roundTripAirfare() {
+        // TODO: implement the function
+        return 0.0f;
+    }
+
+    /**
      * This function asks for the number of car rentals ordered during the trip, then asks for the fare for each
      * rental, and returns the total fare for all car rentals (combined).
      * @return total fare for all car rentals combined.
@@ -64,7 +95,58 @@ namespace question1 {
      */
     float milesDrivenUsingPrivateVehicle() {
         auto miles = common::getNumInput<float>("Enter the number of miles driven using a private car",
-                                                 [](float input) { return input >= 0; });
+                                                [](float input) { return input >= 0; });
         return miles * 0.27f;
+    }
+
+    /**
+     * This function asks for the number of parking fees needed to be paid.
+     * Then, it asks for the fee for each parking.
+     * Then, it calculates the total allowable expense (RM6.00 / day).
+     * Anything in excess has to be covered by the businessperson.
+     * @return allowable (RM6.00 / day) and excess costs for parking fees
+     */
+    common::Expenses parkingFees() {
+        int numberOfParkingFees;
+        float total = 0.0f;
+        common::Expenses result{};
+
+        numberOfParkingFees = common::getNumInput<int>("Enter the number of times parking is needed to be paid",
+                                                       [](int input) { return input >= 0; });
+
+        for (int i = 0; i < numberOfParkingFees; i++) {
+            std::string prompt = "Enter the fee for parking " + std::to_string(i);
+            total += common::getNumInput<float>(prompt.c_str(), [](float input) { return input > 0.0f; });
+        }
+
+        if (total > MAX_PARKING_FEE_COVERED) {
+            result.allowableExpense = MAX_PARKING_FEE_COVERED;
+            result.excessExpense = total - MAX_PARKING_FEE_COVERED;
+        } else {
+            result.allowableExpense = total;
+            result.excessExpense = 0.0f;
+        }
+
+        return result;
+    }
+
+    common::Expenses taxiFees() {
+        // TODO: implement the function
+        return common::Expenses{};
+    }
+
+    float registrationFees() {
+        // TODO: implement the function
+        return 0.0f;
+    }
+
+    common::Expenses hotelExpenses(int numOfDays) {
+        // TODO: implement the function
+        return common::Expenses{};
+    }
+
+    common::Expenses mealExpenses(int numOfDays, DepartArriveTimes departArriveTimes) {
+        // TODO: implement the function
+        return common::Expenses{};
     }
 }

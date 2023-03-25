@@ -15,7 +15,7 @@ namespace common {
         T input;
         bool isValid;
         do {
-            std::cout << message << ": ";
+            std::cout << "[*] " << message << ": ";
             std::cin >> input;
             isValid = func(input);
         } while (!isValid);

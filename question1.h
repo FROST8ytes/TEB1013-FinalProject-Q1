@@ -5,6 +5,8 @@
 #ifndef TEB1013_FINALPROJECT_Q1_QUESTION1_H
 #define TEB1013_FINALPROJECT_Q1_QUESTION1_H
 
+#define MAX_PARKING_FEE_COVERED 6.0f
+
 #include "common.h"
 
 namespace question1 {
@@ -30,6 +32,17 @@ namespace question1 {
     DepartArriveTimes departureAndArrivalTimes();
 
     /**
+     * This function acts as the menu that lists the options that the user can choose to give more info about the trip
+     * for the day.
+     * @param dayNum trip day number
+     * @return option listed in the menu
+     */
+    int menu(int dayNum);
+
+    // TODO: write docs for this function
+    float roundTripAirfare();
+
+    /**
      * This function asks for the number of car rentals ordered during the trip, then asks for the fare for each
      * rental, and returns the total fare for all car rentals (combined).
      * @return total fare for all car rentals combined.
@@ -42,6 +55,23 @@ namespace question1 {
      * @return cost for driving using a private vehicle (RM0.27 / miles)
      */
     float milesDrivenUsingPrivateVehicle();
+
+    /**
+     * This function asks for the number of parking fees needed to be paid.
+     * Then, it asks for the fee for each parking.
+     * Then, it calculates the total allowable expense (RM6.00 / day).
+     * Anything in excess has to be covered by the businessperson.
+     * @return allowable (RM6.00 / day) and excess costs for parking fees
+     */
+    common::Expenses parkingFees();
+
+    common::Expenses taxiFees();
+
+    float registrationFees();
+
+    common::Expenses hotelExpenses(int numOfDays);
+
+    common::Expenses mealExpenses(int numOfDays, DepartArriveTimes departArriveTimes);
 }
 
 #endif //TEB1013_FINALPROJECT_Q1_QUESTION1_H
