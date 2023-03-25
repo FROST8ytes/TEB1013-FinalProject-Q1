@@ -84,11 +84,29 @@ namespace question1 {
      */
     common::Expenses parkingFees();
 
+    /**
+     * This function asks for the number of taxi rides used throughout the day.
+     * Then, it asks for the fare for each taxi ride.
+     * Then, the reimbursable expense (RM10.00 / day) and excess expense is calculated.
+     * @return allowable and excess expenses for taxi rides during the day
+     */
     common::Expenses taxiFees();
 
+    /**
+     * This function asks for the number of conference/seminar registration fees the business person
+     * has to pay for the day.
+     * Then, it asks for the price for each fee.
+     * Then, the price is summed up.
+     * @return sum of conference/seminar registration fees for the day
+     */
     float registrationFees();
 
-    common::Expenses hotelExpenses(int numOfDays);
+    /**
+     * This function asks for the total expense on accommodation per day.
+     * Then, it calculates the reimbursable expense (RM90.00 / night) and excess expense.
+     * @return allowable and excess expenses for accommodation
+     */
+    common::Expenses hotelExpenses();
 
     /**
      * This function asks for the price for each meal and calculates the reimbursable and excess expenses.

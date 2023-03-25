@@ -189,44 +189,20 @@ namespace question1 {
     }
 
     /**
-     * This function asks for the number of nights stayed at the hotel.
-     * Then, it asks for the expense for each night for accommodation.
+     * This function asks for the total expense on accommodation per day.
      * Then, it calculates the reimbursable expense (RM90.00 / night) and excess expense.
-     * @param numOfDays number of days spent on the trip
      * @return allowable and excess expenses for accommodation
      */
-    common::Expenses hotelExpenses(int numOfDays) {
+    common::Expenses hotelExpenses() {
         common::Expenses result{};
-        float total = 0.0f;
-        auto option = common::getNumInput<int>(
-                "Did you stay in a hotel throughout the entire trip? (1 for yes | 0 for no)",
-                [](int input) { return input == 0 || input == 1; });
+        auto total = common::getNumInput<float>("Enter the hotel expense for the day",
+                                                [](float input) { return input >= 0.0f; });
 
-        if (option) {
+        if (total > MAX_HOTEL_COVERED) {
             result.allowableExpense = MAX_HOTEL_COVERED;
+            result.excessExpense = total - MAX_HOTEL_COVERED;
         } else {
-            while (true) {
-                option = common::getNumInput<int>("Enter the number of nights in a hotel",
-                                                  [](int input) { return input > 0; });
-                if (option > numOfDays) {
-                    std::cout << "[-] Number of nights cannot be greater than number of days spent on the trip."
-                              << std::endl;
-                } else {
-                    break;
-                }
-            }
-
-            for (int i = 0; i < option; i++) {
-                std::string prompt = "Enter the hotel expenses for night " + std::to_string(i) + " (in RM)";
-                total = common::getNumInput<float>(prompt.c_str(), [](float input) { return input > 0; });
-
-                if (total > MAX_HOTEL_COVERED) {
-                    result.allowableExpense += MAX_HOTEL_COVERED;
-                    result.excessExpense += total - MAX_HOTEL_COVERED;
-                } else {
-                    result.allowableExpense += total;
-                }
-            }
+            result.allowableExpense = total;
         }
 
         return result;

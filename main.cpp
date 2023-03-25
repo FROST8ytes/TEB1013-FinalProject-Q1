@@ -39,7 +39,7 @@ int main() {
                     expenses.allowableExpense += question1::registrationFees();
                     break;
                 case 5:
-                    expenses += question1::hotelExpenses(numberOfDays);
+                    expenses += question1::hotelExpenses();
                     break;
                 case 6:
                     expenses += question1::mealExpenses(i, numberOfDays, departArriveTimes);

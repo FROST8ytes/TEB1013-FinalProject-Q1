@@ -25,6 +25,9 @@ namespace common {
         unsigned int minute;
     };
 
+    /**
+     * Stores allowable and excess expenses
+     */
     struct Expenses {
         float allowableExpense;
         float excessExpense;
