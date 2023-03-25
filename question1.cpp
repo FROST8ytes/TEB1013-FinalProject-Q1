@@ -57,4 +57,14 @@ namespace question1 {
         return total;
     }
 
+    /**
+     * This function asks for the miles driven using a private vehicle.
+     * Then, it calculates the total expense, which is RM0.27 per mile driven.
+     * @return cost for driving using a private vehicle (RM0.27 / miles)
+     */
+    float milesDrivenUsingPrivateVehicle() {
+        auto miles = common::getNumInput<float>("Enter the number of miles driven using a private car",
+                                                 [](float input) { return input >= 0; });
+        return miles * 0.27f;
+    }
 }

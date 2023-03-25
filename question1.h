@@ -35,6 +35,13 @@ namespace question1 {
      * @return total fare for all car rentals combined.
      */
     float carRentals();
+
+    /**
+     * This function asks for the miles driven using a private vehicle.
+     * Then, it calculates the total expense, which is RM0.27 per mile driven.
+     * @return cost for driving using a private vehicle (RM0.27 / miles)
+     */
+    float milesDrivenUsingPrivateVehicle();
 }
 
 #endif //TEB1013_FINALPROJECT_Q1_QUESTION1_H
