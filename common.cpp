@@ -21,7 +21,7 @@ namespace common {
         bool validDelimiter, validHour, validMinute;
 
         do {
-            std::cout << message << " (HH:MM 24-hour format): ";
+            std::cout << "[*] " << message << " (HH:MM 24-hour format): ";
             std::cin >> time.hour >> delimiter >> time.minute;
             std::cin.ignore();
             validDelimiter = delimiter == ':';
