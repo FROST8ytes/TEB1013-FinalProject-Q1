@@ -202,7 +202,68 @@ namespace question1 {
     }
 
     common::Expenses mealExpenses(int numOfDays, DepartArriveTimes departArriveTimes) {
-        // TODO: implement the function
-        return common::Expenses{};
+        common::Expenses result{};
+        float totalBreakfast = 0.0f;
+        float totalLunch = 0.0f;
+        float totalDinner = 0.0f;
+
+        for (int i = 0; i < numOfDays; i++) {
+            std::string breakfastPrompt = "Enter the expense for breakfast on day " + std::to_string(i);
+            std::string lunchPrompt = "Enter the expense for lunch on day " + std::to_string(i);
+            std::string dinnerPrompt = "Enter the expense for dinner on day " + std::to_string(i);
+
+            bool notFirstAndLastDay = i != 0 && i != (numOfDays - 1);
+            bool breakfastOnFirstDay = i == 0 && (departArriveTimes.departure.hour < BREAKFAST_DEPART_TIME ||
+                                                  (departArriveTimes.departure.hour == BREAKFAST_DEPART_TIME &&
+                                                   departArriveTimes.departure.minute == 0));
+            bool breakfastOnLastDay = i == (numOfDays - 1) && (departArriveTimes.arrival.hour > BREAKFAST_ARRIVE_TIME ||
+                                                               (departArriveTimes.arrival.hour ==
+                                                                BREAKFAST_ARRIVE_TIME &&
+                                                                departArriveTimes.arrival.minute == 0));
+            bool lunchOnFirstDay = i == 0 && (departArriveTimes.departure.hour < LUNCH_DEPART_TIME ||
+                                              (departArriveTimes.departure.hour == LUNCH_DEPART_TIME &&
+                                               departArriveTimes.departure.minute == 0));
+            bool lunchOnLastDay = i == (numOfDays - 1) && (departArriveTimes.arrival.hour > LUNCH_ARRIVE_TIME ||
+                                                           (departArriveTimes.arrival.hour == LUNCH_ARRIVE_TIME &&
+                                                            departArriveTimes.arrival.minute == 0));
+            bool dinnerOnFirstDay = i == 0 && (departArriveTimes.departure.hour < DINNER_DEPART_TIME ||
+                                               (departArriveTimes.departure.hour == DINNER_DEPART_TIME &&
+                                                departArriveTimes.departure.minute == 0));
+            bool dinnerOnLastDay = i == (numOfDays - 1) && (departArriveTimes.arrival.hour > DINNER_ARRIVE_TIME ||
+                                                            (departArriveTimes.arrival.hour == DINNER_ARRIVE_TIME &&
+                                                             departArriveTimes.arrival.minute == 0));
+            if (notFirstAndLastDay || breakfastOnFirstDay || breakfastOnLastDay) {
+                totalBreakfast = common::getNumInput<float>(breakfastPrompt.c_str(),
+                                                            [](float input) { return input >= 0.0f; });
+                if (totalBreakfast > MAX_BREAKFAST_COVERED) {
+                    result.allowableExpense += MAX_BREAKFAST_COVERED;
+                    result.excessExpense += totalBreakfast - MAX_BREAKFAST_COVERED;
+                } else {
+                    result.allowableExpense += totalBreakfast;
+                }
+            }
+
+            if (notFirstAndLastDay || lunchOnFirstDay || lunchOnLastDay) {
+                totalLunch = common::getNumInput<float>(lunchPrompt.c_str(), [](float input) { return input >= 0.0f; });
+                if (totalLunch > MAX_LUNCH_COVERED) {
+                    result.allowableExpense += MAX_LUNCH_COVERED;
+                    result.excessExpense += totalLunch - MAX_LUNCH_COVERED;
+                } else {
+                    result.allowableExpense += totalLunch;
+                }
+            }
+
+            if (notFirstAndLastDay || dinnerOnFirstDay || dinnerOnLastDay) {
+                totalDinner = common::getNumInput<float>(dinnerPrompt.c_str(),
+                                                         [](float input) { return input >= 0.0f; });
+                if (totalDinner > MAX_DINNER_COVERED) {
+                    result.allowableExpense += MAX_DINNER_COVERED;
+                    result.excessExpense += totalDinner - MAX_DINNER_COVERED;
+                } else {
+                    result.allowableExpense += totalDinner;
+                }
+            }
+        }
+        return result;
     }
 }
