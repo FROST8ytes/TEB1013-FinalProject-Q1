@@ -6,6 +6,7 @@
 #define TEB1013_FINALPROJECT_Q1_QUESTION1_H
 
 #define MAX_PARKING_FEE_COVERED 6.0f
+#define MAX_TAXI_FEE_COVERED 10.0f
 
 #include "common.h"
 

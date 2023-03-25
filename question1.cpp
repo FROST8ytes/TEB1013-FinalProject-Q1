@@ -131,8 +131,23 @@ namespace question1 {
     }
 
     common::Expenses taxiFees() {
-        // TODO: implement the function
-        return common::Expenses{};
+        common::Expenses result{};
+        float total = 0.0f;
+        auto numberOfTaxiRides = common::getNumInput<int>("Enter the number of taxi rides used",
+                                                          [](int input) { return input >= 0; });
+        for (int i = 0; i < numberOfTaxiRides; i++) {
+            std::string prompt = "Enter the fee for taxi ride " + std::to_string(i);
+            total += common::getNumInput<float>(prompt.c_str(), [](float input) { return input > 0.0f; });
+        }
+
+        if (total > MAX_TAXI_FEE_COVERED) {
+            result.allowableExpense = MAX_TAXI_FEE_COVERED;
+            result.excessExpense = total - MAX_TAXI_FEE_COVERED;
+        } else {
+            result.allowableExpense = total;
+        }
+
+        return result;
     }
 
     float registrationFees() {
