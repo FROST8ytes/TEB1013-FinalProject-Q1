@@ -10,15 +10,15 @@ namespace common {
      * @param func a function that accepts the input as its parameter and returns a bool, to check for input constraints.
      * @return returns valid input
      */
-        template<typename T>
-        inline T getNumInput(const char* message, bool (*func)(T)) {
-            T input;
-            bool isValid;
-            do {
-                std::cout << message << ": ";
-                std::cin >> input;
-                isValid = func(input);
-            } while (!isValid);
-            return input;
-        }
+    template<typename T>
+    inline T getNumInput(const char* message, bool (*func)(T)) {
+        T input;
+        bool isValid;
+        do {
+            std::cout << message << ": ";
+            std::cin >> input;
+            isValid = func(input);
+        } while (!isValid);
+        return input;
     }
+}

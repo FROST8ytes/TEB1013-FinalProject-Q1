@@ -15,7 +15,7 @@ namespace question1 {
     int numOfTripDays() {
         int input;
         input = common::getNumInput<int>("Enter the number of days spent on the trip",
-                                         [] (int input) -> bool { return input >= 1; });
+                                         [](int input) -> bool { return input >= 1; });
         return input;
     }
 
@@ -35,4 +35,26 @@ namespace question1 {
 
         return departArriveTimes;
     }
+
+    /**
+     * This function asks for the number of car rentals ordered during the trip, then asks for the fare for each
+     * rental, and returns the total fare for all car rentals (combined).
+     * @return total fare for all car rentals combined.
+     */
+    float carRentals() {
+        float total = 0.0f;
+        int numOfCarRentals;
+        numOfCarRentals = common::getNumInput<int>("Enter the number of car rentals",
+                                                   [](int input) { return input >= 0; });
+
+        if (numOfCarRentals > 0) {
+            for (int i = 0; i < numOfCarRentals; i++) {
+                std::string message = "Enter the fare for car rental " + std::to_string(i);
+                total += common::getNumInput<float>(message.c_str(), [](float input) { return input >= 0.0f; });
+            }
+
+        }
+        return total;
+    }
+
 }

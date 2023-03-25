@@ -28,6 +28,13 @@ namespace question1 {
      * @return a struct containing valid departure and arrival times
      */
     DepartArriveTimes departureAndArrivalTimes();
+
+    /**
+     * This function asks for the number of car rentals ordered during the trip, then asks for the fare for each
+     * rental, and returns the total fare for all car rentals (combined).
+     * @return total fare for all car rentals combined.
+     */
+    float carRentals();
 }
 
 #endif //TEB1013_FINALPROJECT_Q1_QUESTION1_H
