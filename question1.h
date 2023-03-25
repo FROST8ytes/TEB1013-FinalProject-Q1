@@ -7,6 +7,7 @@
 
 #define MAX_PARKING_FEE_COVERED 6.0f
 #define MAX_TAXI_FEE_COVERED 10.0f
+#define MAX_HOTEL_COVERED 90.0f
 
 #include "common.h"
 

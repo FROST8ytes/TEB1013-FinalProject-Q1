@@ -165,8 +165,40 @@ namespace question1 {
     }
 
     common::Expenses hotelExpenses(int numOfDays) {
-        // TODO: implement the function
-        return common::Expenses{};
+        common::Expenses result{};
+        float total = 0.0f;
+        auto option = common::getNumInput<int>(
+                "Did you stay in a hotel throughout the entire trip? (1 for yes | 0 for no)",
+                [](int input) { return input == 0 || input == 1; });
+
+        if (option) {
+            result.allowableExpense = MAX_HOTEL_COVERED;
+        } else {
+            while (true) {
+                option = common::getNumInput<int>("Enter the number of nights in a hotel",
+                                                  [](int input) { return input > 0; });
+                if (option > numOfDays) {
+                    std::cout << "[-] Number of nights cannot be greater than number of days spent on the trip."
+                              << std::endl;
+                } else {
+                    break;
+                }
+            }
+
+            for (int i = 0; i < option; i++) {
+                std::string prompt = "Enter the hotel expenses for night " + std::to_string(i);
+                total = common::getNumInput<float>(prompt.c_str(), [](float input) { return input > 0; });
+
+                if (total > MAX_HOTEL_COVERED) {
+                    result.allowableExpense += MAX_HOTEL_COVERED;
+                    result.excessExpense += total - MAX_HOTEL_COVERED;
+                } else {
+                    result.allowableExpense += total;
+                }
+            }
+        }
+
+        return result;
     }
 
     common::Expenses mealExpenses(int numOfDays, DepartArriveTimes departArriveTimes) {
