@@ -52,6 +52,12 @@ namespace common {
     }
 }
 
+/**
+ * This function enables the use of += operator for common::Expenses struct.
+ * @param original lhs of Expenses
+ * @param other rhs of Expenses
+ * @return lhs = lhs + rhs
+ */
 common::Expenses& operator+=(common::Expenses& original, const common::Expenses& other) {
     original.allowableExpense += other.allowableExpense;
     original.excessExpense += other.excessExpense;

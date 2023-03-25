@@ -46,15 +46,20 @@ namespace question1 {
     DepartArriveTimes departureAndArrivalTimes();
 
     /**
+     * This function asks for the number of round-trip airfare,
+     * then asks for the fare for each round-trip.
+     * Then, it returns the total fare for all round-trips.
+     * @return total of all round-trips
+     */
+    float roundTripAirfare();
+
+    /**
      * This function acts as the menu that lists the options that the user can choose to give more info about the trip
      * for the day.
      * @param dayNum trip day number
      * @return option listed in the menu
      */
     int menu(int dayNum);
-
-    // TODO: write docs for this function
-    float roundTripAirfare();
 
     /**
      * This function asks for the number of car rentals ordered during the trip, then asks for the fare for each
@@ -85,7 +90,29 @@ namespace question1 {
 
     common::Expenses hotelExpenses(int numOfDays);
 
-    common::Expenses mealExpenses(int numOfDays, DepartArriveTimes departArriveTimes);
+    /**
+     * This function asks for the price for each meal and calculates the reimbursable and excess expenses.
+     * Reimbursable:
+     * - RM9.00 for breakfast
+     * - RM12.00 for lunch
+     * - RM16.00 for dinner
+     *
+     * On the first day of trip, meal is only covered when:
+     * - breakfast: depart before 07:00
+     * - lunch: depart before 12:00
+     * - dinner: depart before 18:00
+     *
+     * On the last day of trip, meal is only covered when:
+     * - breakfast: arrive after 08:00
+     * - lunch: arrive after 13:00
+     * - dinner: arrive after 19:00
+     *
+     * @param currentDay current day of the trip
+     * @param numOfDays number of days spent on the trip
+     * @param departArriveTimes contains the time of departure on the first day of trip and time of arrival on the last day of trip
+     * @return allowable and excess expenses for each day
+     */
+    common::Expenses mealExpenses(int currentDay, int numOfDays, DepartArriveTimes departArriveTimes);
 }
 
 #endif //TEB1013_FINALPROJECT_Q1_QUESTION1_H

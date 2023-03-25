@@ -51,6 +51,12 @@ namespace common {
     std::string getStrInput(const char* message, bool (*func)(std::string));
 }
 
+/**
+ * This function enables the use of += operator for common::Expenses struct.
+ * @param original lhs of Expenses
+ * @param other rhs of Expenses
+ * @return lhs = lhs + rhs
+ */
 common::Expenses& operator+=(common::Expenses& original, const common::Expenses& other);
 
 #endif //TEB1013_FINALPROJECT_Q1_COMMON_H

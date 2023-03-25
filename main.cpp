@@ -13,6 +13,7 @@ int main() {
 
     int numberOfDays = question1::numOfTripDays();
     question1::DepartArriveTimes departArriveTimes = question1::departureAndArrivalTimes();
+    expenses.allowableExpense += question1::roundTripAirfare();
 
     std::system(CLEAR);
 
@@ -23,30 +24,27 @@ int main() {
 
             switch (option) {
                 case 0:
-                    expenses.allowableExpense += question1::roundTripAirfare();
-                    break;
-                case 1:
                     expenses.allowableExpense += question1::carRentals();
                     break;
-                case 2:
+                case 1:
                     expenses.allowableExpense += question1::milesDrivenUsingPrivateVehicle();
                     break;
-                case 3:
+                case 2:
                     expenses += question1::parkingFees();
                     break;
-                case 4:
+                case 3:
                     expenses += question1::taxiFees();
                     break;
-                case 5:
+                case 4:
                     expenses.allowableExpense += question1::registrationFees();
                     break;
-                case 6:
+                case 5:
                     expenses += question1::hotelExpenses(numberOfDays);
                     break;
-                case 7:
-                    expenses += question1::mealExpenses(numberOfDays, departArriveTimes);
+                case 6:
+                    expenses += question1::mealExpenses(i, numberOfDays, departArriveTimes);
                     break;
-                case 8:
+                case 7:
                     continueMenu = false;
                     break;
                 default:
