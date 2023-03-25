@@ -151,8 +151,17 @@ namespace question1 {
     }
 
     float registrationFees() {
-        // TODO: implement the function
-        return 0.0f;
+        float total = 0.0f;
+
+        auto numberOfRegistrationFees = common::getNumInput<int>(
+                "Enter the number of conference/seminar registration fees", [](int input) { return input >= 0; });
+
+        for (int i = 0; i < numberOfRegistrationFees; i++) {
+            std::string prompt = "Enter the registration fee " + std::to_string(i);
+            total += common::getNumInput<float>(prompt.c_str(), [](float input) { return input > 0; });
+        }
+
+        return total;
     }
 
     common::Expenses hotelExpenses(int numOfDays) {
